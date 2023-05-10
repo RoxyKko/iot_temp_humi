@@ -21,25 +21,25 @@ static inline void print_vision(char *progname);
 
 int main(int argc, char **argv)
 {
-    int opt;                            // 命令行选项
-    int i2c_fd = -1;                    // i2c设备文件描述符
-    int daemon_run = 0;                 // 后台运行标志
-    char *progname = NULL;              // 程序名
-    int error = -1;                     // 报错提示符
-    float temp, rh = 0;                 // 温度、湿度
-    char *servip = NULL;                // 服务器ip
-    int port = 0;                       // 链接端口号
-    char buf[1024];                     // 数据暂存区
-    int socket_fd = -1;                 // socket描述符
-    bool socket_connected = false;      // socket链接状态指示符
-    packinfo_t packinfo;                // 数据包结构体
-    int interval = 4;                   // 采样间隔，默认设为4s
-    int socket_interval = 1;            // 采样间隔，默认设为4s
-    sqlite3 *db;                        // 数据库句柄
-    static double current_time = 0;     // 当前时间
-    static double latest_time = 0;      // 获取温湿度的上一次时间
-    static double get_sockstattime = 0; // 获取socket状态的上一次时间
-    char datime[128];                   // 日期时间字符串
+    int             opt;                            // 命令行选项
+    int             i2c_fd              = -1;       // i2c设备文件描述符
+    int             daemon_run          = 0;        // 后台运行标志
+    char            *progname           = NULL;     // 程序名
+    int             error               = -1;       // 报错提示符
+    float           temp, rh            = 0;        // 温度、湿度
+    char            *servip             = NULL;     // 服务器ip
+    int             port                = 0;        // 链接端口号
+    char            buf[1024];                      // 数据暂存区
+    int             socket_fd           = -1;       // socket描述符
+    bool            socket_connected    = false;    // socket链接状态指示符
+    packinfo_t      packinfo;                       // 数据包结构体
+    int             interval            = 4;        // 采样间隔，默认设为4s
+    int             socket_interval     = 1;        // 采样间隔，默认设为4s
+    sqlite3         *db;                            // 数据库句柄
+    static double   current_time        = 0;        // 当前时间
+    static double   latest_time         = 0;        // 获取温湿度的上一次时间
+    static double   get_sockstattime    = 0;        // 获取socket状态的上一次时间
+    char            datime[128];                    // 日期时间字符串
 
     struct option long_options[] = {
         {"help", no_argument, NULL, 'h'},
